@@ -1,0 +1,1 @@
+server:  port: 1992spring:  datasource:    driverClassName: com.mysql.cj.jdbc.Driver    url: jdbc:mysql://localhost:3306/cis_db    username: root    password: bs@nDip1  jpa:    hibernate.ddl-auto: update    generate-ddl: true    show-sql: true

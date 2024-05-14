@@ -1,0 +1,1 @@
+package com.sandeepbegudem.backend.application.dto;import lombok.*;@AllArgsConstructor@NoArgsConstructor@Setter@Getter@ToStringpublic class CourseDTO {    private Long courseId;    private  String courseName;    private String courseDuration;    private String courseDescription;    private InstructorDTO instructorDTO;}

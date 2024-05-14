@@ -1,0 +1,1 @@
+package com.sandeepbegudem.backend.application.service;import com.sandeepbegudem.backend.application.entity.Role;public interface RoleService {    Role createRole(String roleName);}

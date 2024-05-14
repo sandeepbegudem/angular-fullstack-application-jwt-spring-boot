@@ -1,0 +1,1 @@
+package com.sandeepbegudem.backend.application.dto;import lombok.*;@AllArgsConstructor@NoArgsConstructor@Setter@Getter@ToStringpublic class UserDTO {    private String email;    private String password;}
