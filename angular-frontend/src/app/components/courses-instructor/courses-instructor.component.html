@@ -26,6 +26,12 @@
                                 <td>{{c.courseName}}</td>
                                 <td>{{c.courseDuration}}</td>
                                 <td>{{c.courseDescription}}</td>
+                                <td>
+                                    <button (click)="getUpdateModal(c, updateContent)" class="btn btn-success">
+                                        <i class="bi bi-pencil-square"></i>
+
+                                    </button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -67,11 +73,13 @@
                     <div class="form-group">
                         <label class="text-muted">Course Name</label>
                         <input type="text" class="form-control form-font rounder-0 mt-1 mb-3"
-                        [ngClass]="{'is-invalid':submitted && courseFormGroup.controls['courseName'].errors}"
-                        formControlName="courseName">
-                      <div *ngIf="submitted && courseFormGroup.controls['courseName'].errors" class="invalid-feedback">
-                        <div *ngIf="courseFormGroup.controls['courseName'].errors['required']">Course Name is Required</div>
-                      </div>
+                            [ngClass]="{'is-invalid':submitted && courseFormGroup.controls['courseName'].errors}"
+                            formControlName="courseName">
+                        <div *ngIf="submitted && courseFormGroup.controls['courseName'].errors"
+                            class="invalid-feedback">
+                            <div *ngIf="courseFormGroup.controls['courseName'].errors['required']">Course Name is
+                                Required</div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -79,21 +87,25 @@
                         <label class="text-muted">Course Duration</label>
                         <input type="text" class="form-control form-font rounder-0 mt-1 mb-3"
                             [ngClass]="{'is-invalid':submitted && courseFormGroup.controls['courseDuration'].errors}"
-                        formControlName="courseDuration">
-                      <div *ngIf="submitted && courseFormGroup.controls['courseDuration'].errors" class="invalid-feedback">
-                        <div *ngIf="courseFormGroup.controls['courseDuration'].errors['required']">Course Duration is Required</div>
-                      </div>
+                            formControlName="courseDuration">
+                        <div *ngIf="submitted && courseFormGroup.controls['courseDuration'].errors"
+                            class="invalid-feedback">
+                            <div *ngIf="courseFormGroup.controls['courseDuration'].errors['required']">Course Duration
+                                is Required</div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="text-muted">Course Description</label>
                         <input type="text" class="form-control form-font rounder-0 mt-1 mb-3"
-                        [ngClass]="{'is-invalid':submitted && courseFormGroup.controls['courseDescription'].errors}"
-                        formControlName="courseDescription">
-                      <div *ngIf="submitted && courseFormGroup.controls['courseDescription'].errors" class="invalid-feedback">
-                        <div *ngIf="courseFormGroup.controls['courseDescription'].errors['required']">Course Description is Required</div>
-                      </div>
+                            [ngClass]="{'is-invalid':submitted && courseFormGroup.controls['courseDescription'].errors}"
+                            formControlName="courseDescription">
+                        <div *ngIf="submitted && courseFormGroup.controls['courseDescription'].errors"
+                            class="invalid-feedback">
+                            <div *ngIf="courseFormGroup.controls['courseDescription'].errors['required']">Course
+                                Description is Required</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -102,6 +114,74 @@
             <button type="button" class="btn btn-sm btn-secondary" (click)="onCloseModal(modal)">Close</button>
             <button type="button" class="btn btn-sm btn-primary" (click)="onSaveCourse(modal)">Save</button>
         </div>
-
     </form>
+</ng-template>
+<ng-template #updateContent let-updateModal>
+    <div class="modal-header">
+        <div class="modal-title text-muted"><i class="fa-regular fa-circle-dot"></i>&nbsp; Course Form</div>
+        <button type="button" class="btn-close" aria-label="Close"
+            (click)="updateModal.dismiss('Cross click')"></button>
+    </div>
+    <form [formGroup]="updateCourseFormGroup">
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="text-muted">Course Id</label>
+                        <input type="text" class="form-control form-font rounded-0 mt-1 mb-3" formControlName="courseId"
+                            readonly>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="text-muted">Course courseName</label>
+                        <input type="text" class="form-control form-font rounded-0 mt-1 mb-3"
+                            [ngClass]="{'is-invalid' : submitted && updateCourseFormGroup.controls['courseName'].errors}"
+                            formControlName="courseName">
+                        <div *ngIf="submitted && updateCourseFormGroup.controls['courseName'].errors"
+                            class="invalid-feedback">
+                            <div *ngIf="updateCourseFormGroup.controls['courseName'].errors['required']">Course Name is
+                                Required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="text-muted">Course Duration</label>
+                        <input type="text" class="form-control form-font rounded-0 mt-1 mb-3"
+                            [ngClass]="{'is-invalid' : submitted && updateCourseFormGroup.controls['courseDuration'].errors}"
+                            formControlName="courseDuration">
+                        <div *ngIf="submitted && updateCourseFormGroup.controls['courseDuration'].errors"
+                            class="invalid-feedback">
+                            <div *ngIf="updateCourseFormGroup.controls['courseDuration'].errors['required']">Course
+                                Duration is Required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="text-muted">Course Description</label>
+                        <input type="text" class="form-control form-font rounded-0 mt-1 mb-3"
+                            [ngClass]="{'is-invalid' : submitted && updateCourseFormGroup.controls['courseDescription'].errors}"
+                            formControlName="courseDescription">
+                        <div *ngIf="submitted && updateCourseFormGroup.controls['courseDescription'].errors"
+                            class="invalid-feedback">
+                            <div *ngIf="updateCourseFormGroup.controls['courseDescription'].errors['required']">Course
+                                Description is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-sm btn-primary"
+                (click)="onCloseUpdateModal(updateModal)">Close</button>
+            <button type="button" class="btn btn-sm btn-primary" (click)="onUpdateCourse(updateModal)">Save
+                Changes</button>
+        </div>
+    </form>
+
 </ng-template>

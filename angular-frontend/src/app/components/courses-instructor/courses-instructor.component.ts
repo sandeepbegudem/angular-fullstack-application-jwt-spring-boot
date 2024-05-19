@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { contains } from 'jquery';
 import { catchError, Observable, throwError } from 'rxjs';
 import { Course } from 'src/app/model/course.model';
 import { InstructorDTO } from 'src/app/model/instructor.model';
@@ -63,7 +64,7 @@ export class CoursesInstructorComponent implements OnInit {
       courseName: ["", Validators.required],
       courseDuration: ["", Validators.required],
       courseDescription: ["", Validators.required],
-      instructor: [this.currentInstructor, Validators.required]
+      instructorDTO: [this.currentInstructor, Validators.required],
     })
     this.modalService.open(content, {size: 'xl'});
   }
@@ -88,5 +89,41 @@ export class CoursesInstructorComponent implements OnInit {
         console.log(err);
       }
     })
+  }
+
+  getUpdateModal(c: Course, updateContent: any) {
+    this.updateCourseFormGroup = this.fb.group({
+      courseId: [c.courseId, Validators.required],
+      courseName: [c.courseName, Validators.required],
+      courseDuration: [c.courseDuration, Validators.required],
+      courseDescription: [c.courseDescription, Validators.required],
+      instructorDTO: [c.instructorDTO, Validators.required],
+    })
+    this.modalService.open(updateContent, {size:'xl'})
+
+  }
+
+  onCloseUpdateModal(updateModal : any) {
+    updateModal.close();
+    this.updateCourseFormGroup.reset();
+    
+  }
+
+  onUpdateCourse(updateModal : any) {
+    console.log(this.updateCourseFormGroup.value)
+    this.submitted = true;
+    if(this.updateCourseFormGroup.invalid) return;
+    this.courseService.updateCourse(this.updateCourseFormGroup.value, this.updateCourseFormGroup.value.courseId).subscribe({
+      next: () =>{
+        alert("Success Updating Course!")
+        this.handleSearchInstructorCourses();
+        this.submitted = false
+        updateModal.close();
+      }, error: err => {
+        alert(err.message);
+        console.log(err)
+      }
+    })
+
   }
 }
