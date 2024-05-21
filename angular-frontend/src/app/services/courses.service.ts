@@ -29,4 +29,12 @@ export class CoursesService {
   public getCoursesByInstructorId(instructorId: number, currentPage: number, pageSize: number) : Observable<PageResponse<Course>> {
     return this.httpClient.get<PageResponse<Course>>(environment.backendHost+"/instructors/" + instructorId + "/courses?currentPage=" + currentPage + "&pageSize=" + pageSize)
   }
+
+  public updateCourse(course: Course, courseId: number): Observable<Course> {
+    return this.httpClient.put<Course>(environment.backendHost + "/courses/" + courseId, course);
+  }
+  
+  public getCoursesByStudent(studentId : number, currentPage : number, pageSize : number)  : Observable<PageResponse<Course>> {
+    return this.httpClient.get<PageResponse<Course>>(environment.backendHost + "/students/" + studentId + "/courses?currentPage=" + currentPage + "&pageSize=" + pageSize);
+  }
 }
