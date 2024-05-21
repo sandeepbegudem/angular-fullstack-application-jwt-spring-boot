@@ -2,7 +2,7 @@
     <div class="box">
         <div class="box-header">
             <div class="box-header-grid">
-                <div class="box-header-title">These are your current subscriptions</div>
+                <div class="box-header-title">These are Your Current Subscriptions</div>
             </div>
         </div>
         <div class="box-content">
@@ -36,11 +36,80 @@
                         </tr>
                     </tfoot>
                 </table>
+                <ul class="nav nav-pills">
+                    <li *ngFor="let item of [].constructor(listCourses.totalPages); let page=index">
+                        <a [ngClass]="page==currentPage?'btn-info':'btn-outline-info'" (click)="gotoPage(page)"
+                         class="btn mb-1 ms-1 mt-1">{{page}}</a>
+                    </li>
+                </ul>
             </ng-container>
             <ng-template #failureOrLoading>
                 <ng-container *ngIf="errorMessage ; else loading">
                     <div class="text-danger">
                         {{errorMessage}}
+                    </div>
+                </ng-container>
+                <ng-template #loading>
+                    <div class="loader shadow-sm text-muted">
+                        <span><i class="fa-solid fa-rotate fa-spin"></i></span> &nbsp; <span>Processing...</span>
+                    </div>
+                </ng-template>
+            </ng-template>
+        </div>
+    </div>
+    <div class="box">
+        <div class="box-header">
+            <div class="box-header-grid">
+                <div class="box-header-title">Courses Available for Enrollment</div>
+            </div>
+        </div>
+        <div class="box-content">
+            <ng-container *ngIf="pageOtherCourses | async as listOtherCourses; else otherCoursesFailureOrLoading">
+                <table class="table table-striped table-hover" style="width: 100%">
+                    <thead>
+                        <tr>
+                            <th>Course Id</th>
+                            <th>Course Name</th>
+                            <th>Course Duration</th>
+                            <th>Course Description</th>
+                            <th>Instructor</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let c of listOtherCourses.content">
+                            <td>{{c.courseId}}</td>
+                            <td>{{c.courseName}}</td>
+                            <td>{{c.courseDuration}}</td>
+                            <td>{{c.courseDescription}}</td>
+                            <td>{{c.instructorDTO.firstName}} {{c.instructorDTO.lastName}}</td>
+                            <td>
+                                <button (click)="enrollIn(c)" class="btn btn-primary-gradient">Enroll In</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Course Id</th>
+                            <th>Course Name</th>
+                            <th>Course Duration</th>
+                            <th>Course Description</th>
+                            <th>Instructor</th>
+                            <th>Actions</th>
+                        </tr>
+                    </tfoot>
+                </table>
+                <ul class="nav nav-pills">
+                    <li *ngFor="let item of [].constructor(listOtherCourses.totalPages); let page=index">
+                        <a [ngClass]="page==otherCoursescurrentPage?'btn-info':'btn-outline-info'" (click)="gotoPageOtherCourses(page)"
+                         class="btn mb-1 ms-1 mt-1">{{page}}</a>
+                    </li>
+                </ul>
+            </ng-container>
+            <ng-template #otherCoursesFailureOrLoading>
+                <ng-container *ngIf="otherErrorMessage ; else loading">
+                    <div class="text-danger">
+                        {{otherErrorMessage}}
                     </div>
                 </ng-container>
                 <ng-template #loading>
