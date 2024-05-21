@@ -33,8 +33,17 @@ export class CoursesService {
   public updateCourse(course: Course, courseId: number): Observable<Course> {
     return this.httpClient.put<Course>(environment.backendHost + "/courses/" + courseId, course);
   }
-  
+
   public getCoursesByStudent(studentId : number, currentPage : number, pageSize : number)  : Observable<PageResponse<Course>> {
     return this.httpClient.get<PageResponse<Course>>(environment.backendHost + "/students/" + studentId + "/courses?currentPage=" + currentPage + "&pageSize=" + pageSize);
   }
+
+  public getNonEnrolledInCoursesByStudent(studentId : number, currentPage : number, pageSize : number) : Observable<PageResponse<Course>> {
+    return this.httpClient.get<PageResponse<Course>>(environment.backendHost + "/students/ " + studentId + "/other-courses?page=" + currentPage + "&size=" + pageSize);
+  }
+
+  public enrollStudentInCourse(courseId : number, studentId : number) {
+    return this.httpClient.post(environment.backendHost + "/courses/" + courseId + "/enroll/students/" + studentId, null);
+  }
+  
 }
