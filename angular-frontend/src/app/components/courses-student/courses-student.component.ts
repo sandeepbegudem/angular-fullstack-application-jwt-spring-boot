@@ -18,6 +18,11 @@ export class CoursesStudentComponent implements OnInit {
   pageSize: number=5;
   errorMessage! : string;
 
+  pageOtherCourses!: Observable<PageResponse<Course>>;
+  otherCoursescurrentPage : number=0;
+  otherCoursesPageSize: number=5;
+  otherErrorMessage! : string;
+
   constructor(
     private route: ActivatedRoute,
     private courseService: CoursesService
@@ -26,6 +31,7 @@ export class CoursesStudentComponent implements OnInit {
   ngOnInit(): void {
     this.studentId = this.route.snapshot.params['id'];
     this.handleSearchStudentCourses();
+    this.handleSearchNonEnrolledInCourses();
   }
 
   handleSearchStudentCourses() {
@@ -35,6 +41,37 @@ export class CoursesStudentComponent implements OnInit {
         return throwError(err);
       })
     )
+  }
+
+  gotoPage(page : number) {
+    this.currentPage = page;
+    this.handleSearchStudentCourses();
+  }
+
+  handleSearchNonEnrolledInCourses() {
+    this.pageOtherCourses = this.courseService.getNonEnrolledInCoursesByStudent(this.studentId, this.otherCoursescurrentPage, this.otherCoursesPageSize).pipe(
+      catchError(err => {
+        this.otherErrorMessage = err.message;
+        return throwError(err);
+      })
+    )
+  }
+
+  gotoPageOtherCourses(page : number) {
+    this.otherCoursescurrentPage = page;
+    this.handleSearchNonEnrolledInCourses();
+  }
+
+  enrollIn(c : Course) {
+    this.courseService.enrollStudentInCourse(c.courseId, this.studentId).subscribe({
+      next: () => {
+        this.handleSearchStudentCourses();
+        this.handleSearchNonEnrolledInCourses();
+      }, error : err => {
+        alert(err.message);
+        console.log(err)
+      }
+    })
   }
 
 }
