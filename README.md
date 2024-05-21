@@ -1,4 +1,4 @@
-# angular-fullstack-application-jwt
+# angular-fullstack-application-jwt-spring-boot
 
 ## Project Details:
 
