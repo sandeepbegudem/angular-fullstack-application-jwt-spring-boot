@@ -9,14 +9,14 @@
 
 body {
     font-size: 14px;
-    /* background-color: #ECF0F2; */
-    background: linear-gradient(45deg,#F21A2B,#E787F2);
+    background: linear-gradient(45deg,#809fff, #00b359);
 }
 
 
 .body-dark,
 .header-dark {
-    background-color: #42424A;
+    background-color: #d81b60;
+
 }
 
 .header-dark .top-menu ul li a {
@@ -98,7 +98,7 @@ ul {
 
 .aside nav ul li a.active,
 .aside nav ul li a.active:hover{
-    background: linear-gradient(195deg,#ec407a,#d81b60);
+    background: linear-gradient(175deg,#ff0000,#660000);
     opacity: 1;
 }
 
@@ -335,7 +335,7 @@ ul {
 
 
 .table-blue {
-    background-color: #F1EAF2;
+    background-color: #edeaf2;
     border-bottom: #F1EAF2;;
     color: #FFF;
 }
