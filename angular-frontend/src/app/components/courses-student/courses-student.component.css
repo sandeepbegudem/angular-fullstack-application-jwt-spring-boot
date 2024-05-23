@@ -1,0 +1,11 @@
+.box-header-title.custom-color {
+    color: #1f147f; /* Custom color (e.g., blue) */
+  }
+  
+  .box-header-title.custom-font {
+    font-family: 'Arial', sans-serif; /* Custom font family */
+  }
+  
+  .box-header-title.custom-padding {
+    padding: 10px; /* Custom padding */
+  }
