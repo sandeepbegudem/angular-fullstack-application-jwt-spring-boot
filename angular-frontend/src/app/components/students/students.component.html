@@ -24,7 +24,7 @@
         <table class="table table-striped table-hover" id="example" style="width:100%">
           <thead>
             <tr>
-              <th>Student Id</th>
+              <th style="text-align: left;">Student Id</th>
               <th>Student First Name</th>
               <th>Student Last Name</th>
               <th>Student Level</th>
@@ -32,13 +32,13 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let student of listStudents.content">
-              <td>{{student.studentId}}</td>
-              <td>{{student.firstName}}</td>
-              <td>{{student.lastName}}</td>
-              <td>{{student.level}}</td>
+            <tr *ngFor="let s of listStudents.content">
+              <td style="text-align: left; vertical-align: middle;">{{ s.studentId }}</td>
+              <td>{{ s.firstName }}</td>
+              <td>{{ s.lastName }}</td>
+              <td>{{ s.level }}</td>
               <td>
-                <button (click)="handleDeleteStudent(student)" class="btn btn-danger">
+                <button (click)="handleDeleteStudent(s)" class="btn btn-danger">
                   <i class="bi bi-trash"></i>
                 </button>
               </td>
@@ -46,7 +46,7 @@
           </tbody>
           <tfoot>
             <tr>
-              <th>Student Id</th>
+              <th style="text-align: left;">Student Id</th>
               <th>Student First Name</th>
               <th>Student Last Name</th>
               <th>Student Level</th>
@@ -83,78 +83,78 @@
     <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
   </div>
   <form [formGroup]="studentFormGroup" method="post">
-  <div class="modal-body">
-    <div class="row">
-      <div class="col-md-4">
-        <div class="form-group">
-          <label class="text-muted">First Name</label>
-          <input type="text" class="form-control form-font rounded-0 mt-1 mb-3"
-            [ngClass]="{'is-invalid':submitted && studentFormGroup.controls['firstName'].errors}"
-            formControlName="firstName">
-          <div *ngIf="submitted && studentFormGroup.controls['firstName'].errors" class="invalid-feedback">
-            <div *ngIf="studentFormGroup.controls['firstName'].errors['required']">First Name is Required</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="form-group">
-          <label class="text-muted">Last Name</label>
-          <input type="text" class="form-control form-font rounded-0 mt-1 mb-3"
-            [ngClass]="{'is-invalid':submitted && studentFormGroup.controls['lastName'].errors}"
-            formControlName="lastName">
-          <div *ngIf="submitted && studentFormGroup.controls['lastName'].errors" class="invalid-feedback">
-            <div *ngIf="studentFormGroup.controls['lastName'].errors['required']">Last Name is Required</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="form-group">
-          <label class="text-muted">Level</label>
-          <input type="text" class="form-control form-font rounded-0 mt-1 mb-3"
-            [ngClass]="{'is-invalid':submitted && studentFormGroup.controls['level'].errors}" formControlName="level">
-          <div *ngIf="submitted && studentFormGroup.controls['level'].errors" class="invalid-feedback">
-            <div *ngIf="studentFormGroup.controls['level'].errors['required']">Level is Required</div>
-          </div>
-        </div>
-      </div>
-
-      <div formGroupName="userDTO">
+    <div class="modal-body">
+      <div class="row">
         <div class="col-md-4">
           <div class="form-group">
-            <label class="text-muted">Email</label>
-            <input type="email" class="form-control form-font rounded-0 mt-1 mb-3"
-              [ngClass]="{'is-invalid':submitted && studentFormGroup.get('userDTO.email')?.errors}"
-              formControlName="email">
-            <div *ngIf="submitted && studentFormGroup.get('userDTO.email')?.errors" class="invalid-feedback">
-              <div *ngIf="studentFormGroup.get('userDTO.email')!.errors?.['required']">Email is Required</div>
-              <div *ngIf="studentFormGroup.get('userDTO.email')!.errors?.['pattern']">Please enter a valid Email
-              </div>
-              <div *ngIf="studentFormGroup.get('userDTO.email')!.errors?.['emailAlreadyExist']">Email Already
-                Exists</div>
+            <label class="text-muted">First Name</label>
+            <input type="text" class="form-control form-font rounded-0 mt-1 mb-3"
+              [ngClass]="{'is-invalid':submitted && studentFormGroup.controls['firstName'].errors}"
+              formControlName="firstName">
+            <div *ngIf="submitted && studentFormGroup.controls['firstName'].errors" class="invalid-feedback">
+              <div *ngIf="studentFormGroup.controls['firstName'].errors['required']">First Name is Required</div>
             </div>
           </div>
         </div>
+
         <div class="col-md-4">
           <div class="form-group">
-            <label class="text-muted">Password</label>
-            <input type="password" class="form-control form-font rounded-0 mt-1 mb-3"
-              [ngClass]="{'is-invalid':submitted && studentFormGroup.get('userDTO.password')?.errors}"
-              formControlName="password">
-            <div *ngIf="submitted && studentFormGroup.get('userDTO.password')?.errors" class="invalid-feedback">
-              <div *ngIf="studentFormGroup.get('userDTO.password')!.errors?.['required']">Password is Required
+            <label class="text-muted">Last Name</label>
+            <input type="text" class="form-control form-font rounded-0 mt-1 mb-3"
+              [ngClass]="{'is-invalid':submitted && studentFormGroup.controls['lastName'].errors}"
+              formControlName="lastName">
+            <div *ngIf="submitted && studentFormGroup.controls['lastName'].errors" class="invalid-feedback">
+              <div *ngIf="studentFormGroup.controls['lastName'].errors['required']">Last Name is Required</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="text-muted">Level</label>
+            <input type="text" class="form-control form-font rounded-0 mt-1 mb-3"
+              [ngClass]="{'is-invalid':submitted && studentFormGroup.controls['level'].errors}" formControlName="level">
+            <div *ngIf="submitted && studentFormGroup.controls['level'].errors" class="invalid-feedback">
+              <div *ngIf="studentFormGroup.controls['level'].errors['required']">Level is Required</div>
+            </div>
+          </div>
+        </div>
+
+        <div formGroupName="userDTO">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="text-muted">Email</label>
+              <input type="email" class="form-control form-font rounded-0 mt-1 mb-3"
+                [ngClass]="{'is-invalid':submitted && studentFormGroup.get('userDTO.email')?.errors}"
+                formControlName="email">
+              <div *ngIf="submitted && studentFormGroup.get('userDTO.email')?.errors" class="invalid-feedback">
+                <div *ngIf="studentFormGroup.get('userDTO.email')!.errors?.['required']">Email is Required</div>
+                <div *ngIf="studentFormGroup.get('userDTO.email')!.errors?.['pattern']">Please enter a valid Email
+                </div>
+                <div *ngIf="studentFormGroup.get('userDTO.email')!.errors?.['emailAlreadyExist']">Email Already
+                  Exists</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="text-muted">Password</label>
+              <input type="password" class="form-control form-font rounded-0 mt-1 mb-3"
+                [ngClass]="{'is-invalid':submitted && studentFormGroup.get('userDTO.password')?.errors}"
+                formControlName="password">
+              <div *ngIf="submitted && studentFormGroup.get('userDTO.password')?.errors" class="invalid-feedback">
+                <div *ngIf="studentFormGroup.get('userDTO.password')!.errors?.['required']">Password is Required
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
+      </div>
     </div>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-sm btn-secondary" (click)="onCloseModal(modal)">Close</button>
-    <button type="button" class="btn btn-sm btn-primary" (click)="onSaveStudent(modal)">Save changes</button>
-  </div>
-</form>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-sm btn-secondary" (click)="onCloseModal(modal)">Close</button>
+      <button type="button" class="btn btn-sm btn-primary" (click)="onSaveStudent(modal)">Save changes</button>
+    </div>
+  </form>
 </ng-template>
