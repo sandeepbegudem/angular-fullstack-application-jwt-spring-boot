@@ -2,7 +2,7 @@
     <div class="box">
         <div class="box-header">
             <div class="box-header-grid">
-                <div class="box-header-title">These are Your Current Subscriptions</div>
+                <div class="box-header-title custom-color custom-font custom-padding">These are Your Current Subscriptions</div>
             </div>
         </div>
         <div class="box-content">
@@ -10,7 +10,7 @@
                 <table class="table table-striped table-hover" style="width: 100%">
                     <thead>
                         <tr>
-                            <th>Course Id</th>
+                            <th style="text-align: center;">Course Id</th>
                             <th>Course Name</th>
                             <th>Course Duration</th>
                             <th>Course Description</th>
@@ -19,7 +19,7 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let c of listCourses.content">
-                            <td>{{c.courseId}}</td>
+                            <td style="text-align: center; vertical-align: middle;">{{c.courseId}}</td>
                             <td>{{c.courseName}}</td>
                             <td>{{c.courseDuration}}</td>
                             <td>{{c.courseDescription}}</td>
@@ -28,7 +28,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th>Course Id</th>
+                            <th style="text-align: center;">Course Id</th>
                             <th>Course Name</th>
                             <th>Course Duration</th>
                             <th>Course Description</th>
@@ -60,7 +60,7 @@
     <div class="box">
         <div class="box-header">
             <div class="box-header-grid">
-                <div class="box-header-title">Courses Available for Enrollment</div>
+                <div class="box-header-title custom-color custom-font custom-padding">Courses Available for Enrollment</div>
             </div>
         </div>
         <div class="box-content">
@@ -68,9 +68,9 @@
                 <table class="table table-striped table-hover" style="width: 100%">
                     <thead>
                         <tr>
-                            <th>Course Id</th>
+                            <th style="text-align: center;">Course Id</th>
                             <th>Course Name</th>
-                            <th>Course Duration</th>
+                            <th style="text-align: center;">Course Duration</th>
                             <th>Course Description</th>
                             <th>Instructor</th>
                             <th>Actions</th>
@@ -78,9 +78,9 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let c of listOtherCourses.content">
-                            <td>{{c.courseId}}</td>
+                            <td style="text-align: center; vertical-align: middle;">{{c.courseId}}</td>
                             <td>{{c.courseName}}</td>
-                            <td>{{c.courseDuration}}</td>
+                            <td style="text-align: center; vertical-align: middle;">{{c.courseDuration}}</td>
                             <td>{{c.courseDescription}}</td>
                             <td>{{c.instructorDTO.firstName}} {{c.instructorDTO.lastName}}</td>
                             <td>
@@ -90,9 +90,9 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th>Course Id</th>
+                            <th style="text-align: center;">Course Id</th>
                             <th>Course Name</th>
-                            <th>Course Duration</th>
+                            <th style="text-align: center;">Course Duration</th>
                             <th>Course Description</th>
                             <th>Instructor</th>
                             <th>Actions</th>
