@@ -24,18 +24,18 @@
         <table class="table table-striped table-hover" id="example" style="width:100%">
           <thead>
             <tr>
-              <th>Instructor Id</th>
-              <th>Instructor First Name</th>
-              <th>Instructor Last Name</th>
-              <th>Instructor Summary</th>
-              <th>Actions</th>
+              <th style="text-align: center;">Instructor Id</th>
+              <th style="text-align: center;">Instructor First Name</th>
+              <th style="text-align: center;">Instructor Last Name</th>
+              <th style="text-align: left;">Instructor Summary</th>
+              <th style="text-align: right;">Actions</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let i of listInstructors.content">
-              <td>{{i.instructorId}}</td>
-              <td>{{i.firstName}}</td>
-              <td>{{i.lastName}}</td>
+              <td style="text-align: center; vertical-align: middle;">{{i.instructorId}}</td>
+              <td style="text-align: center; vertical-align: middle;">{{i.firstName}}</td>
+              <td style="text-align: center; vertical-align: middle;">{{i.lastName}}</td>
               <td>{{i.summary}}</td>
               <td>
                 <button (click)="handleDeleteInstructor(i)" class="btn btn-danger">
@@ -43,7 +43,7 @@
                 </button>
               </td>
               <td>
-                <button (click)="getCoursesModal(i, coursesContent)" class="btn btn-info">
+                <button (click)="getCoursesModal(i, coursesContent)" class="btn btn-primary-gradient">
                   Courses
                 </button>
               </td>
@@ -51,11 +51,11 @@
           </tbody>
           <tfoot>
             <tr>
-              <th>Instructor Id</th>
-              <th>Instructor First Name</th>
-              <th>Instructor Last Name</th>
+              <th style="text-align: center;">Instructor Id</th>
+              <th style="text-align: center;">Instructor First Name</th>
+              <th style="text-align: center;">Instructor Last Name</th>
               <th>Instructor Summary</th>
-              <th>Actions</th>
+              <th style="text-align: center;">Actions</th>
             </tr>
           </tfoot>
         </table>
