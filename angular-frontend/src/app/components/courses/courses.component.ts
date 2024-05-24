@@ -15,7 +15,6 @@ import { InstructorsService } from 'src/app/services/instructors.service';
 })
 
 export class CoursesComponent implements OnInit {
-  //[x: string]: any;
 
   searchFormGroup!: FormGroup;
   courseFormGroup!: FormGroup;
@@ -121,6 +120,7 @@ export class CoursesComponent implements OnInit {
     )
 
   }
+  
   getUpdateModel(course: Course, updateContent: any) {
     this.fetchInstructors();
     this.updateCourseFormGroup = this.fb.group({
@@ -130,14 +130,23 @@ export class CoursesComponent implements OnInit {
       courseDescription: [course.courseDescription, Validators.required],
       instructorDTO: [course.instructorDTO, Validators.required]
     })
-    this.defaultInstructor = this.courseFormGroup.controls['instructorDTO'].value;
+    this.defaultInstructor = this.updateCourseFormGroup.controls['instructorDTO'].value;
     this.modalService.open(updateContent, { size: 'xl' })
   }
 
   onUpdateCourse(updateModal: any) {
     this.submitted = true;
     if (this.updateCourseFormGroup.invalid) return;
-
+    this.courseService.updateCourse(this.updateCourseFormGroup.value, this.updateCourseFormGroup.value.courseId).subscribe({
+      next: () => {
+        alert("Success Updating the Course");
+        this.handleSearchCourses();
+        this.submitted=false;
+        updateModal.close();
+      }, error : err => {
+        alert(err.message);
+      }
+    })
   }
 
 }
