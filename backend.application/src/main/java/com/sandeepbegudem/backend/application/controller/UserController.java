@@ -22,7 +22,7 @@ import static com.sandeepbegudem.backend.application.constants.JWTUtil.AUTH_HEAD
 import static com.sandeepbegudem.backend.application.constants.JWTUtil.SECRET;
 
 @RestController
-@CrossOrigin("*")
+@CrossOrigin(origins="http://localhost:4200")
 @RequestMapping("/api/v1/users")
 public class UserController {
 
